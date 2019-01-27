@@ -1,0 +1,8 @@
+package org.nitin.stockprices.controller;
+
+import org.springframework.boot.actuate.endpoint.web.annotation.RestControllerEndpoint;
+
+@RestControllerEndpoint(id = "")
+public class StockPriceRequestHandler {
+
+}

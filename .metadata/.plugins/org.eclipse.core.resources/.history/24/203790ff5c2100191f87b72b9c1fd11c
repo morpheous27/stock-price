@@ -1,0 +1,5 @@
+package org.nitin.stockprices.config;
+
+public class CacheConfig {
+
+}

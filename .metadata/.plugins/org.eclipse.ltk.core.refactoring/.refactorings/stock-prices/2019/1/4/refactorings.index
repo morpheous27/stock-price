@@ -1,0 +1,5 @@
+1548511251249	Rename local variable 'stock'
+1548511429126	Rename local variable 'latestStock'
+1548511447210	Rename local variable 'stockPrice'
+1548515594862	Rename type 'StockRepository'
+1548515618588	Rename type 'StockRepositoryImpl'

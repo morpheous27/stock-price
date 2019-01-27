@@ -1,0 +1,6 @@
+package org.nitin.stockprices.repository;
+
+public class StockPriceRepositoryImpl implements StockPriceRepository{
+
+	
+}

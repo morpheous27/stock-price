@@ -1,0 +1,11 @@
+package org.nitin.stockprices.repository;
+
+import org.nitin.stockprices.model.Stock;
+
+public interface StockRepository {
+
+	public Stock findBySymbol(String symbol);
+
+	public void saveStock(Stock stock);
+
+}

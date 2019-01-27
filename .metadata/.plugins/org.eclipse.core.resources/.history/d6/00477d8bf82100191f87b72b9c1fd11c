@@ -1,0 +1,30 @@
+package org.nitin.stockprices.repository;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+import org.nitin.stockprices.model.Stock;
+import org.springframework.stereotype.Repository;
+
+/**
+ * Repository implementation to {@link CacheService}
+ * 
+ * @author Nitin@Linux
+ * 
+ */
+@Repository
+public class CacheServiceImpl implements CacheService {
+
+	private Map<String, Map<String, Stock>> cache = new ConcurrentHashMap<String, Map<String, Stock>>();
+
+	@Override
+	public Map<String, Stock> findPriceBySymbol(String symbol) {
+		return cache.get(symbol);
+	}
+
+	@Override
+	public void saveStock(Stock stock) {
+		
+	}
+
+}

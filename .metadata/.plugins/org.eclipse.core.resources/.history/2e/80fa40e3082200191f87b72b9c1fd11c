@@ -1,0 +1,37 @@
+package org.nitin.stockprices.repository;
+
+import java.math.BigDecimal;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+/**
+ * Repository implementation to {@link CacheService}
+ * 
+ * @author Nitin@Linux
+ * 
+ */
+@Repository
+public class CacheServiceImpl implements CacheService {
+	
+	@Autowired
+	private StockPriceRepository stockPriceRepository;
+
+	@Override
+	public BigDecimal findPriceBySymbol(String symbol) {
+		
+		if(stockPriceRepository.findSourceMapBySymbol(symbol) == null)
+		{
+			return null;
+		}
+		
+		return null;
+	}
+
+	@Override
+	public void removeFromCache(String symbol) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

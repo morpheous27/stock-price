@@ -1,0 +1,37 @@
+package org.nitin.stockprices.repository;
+
+import java.math.BigDecimal;
+import java.util.Map;
+
+import org.nitin.stockprices.model.Stock;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+
+/**
+ * Interface to represent CRUD operations supported on an entity.
+ * 
+ * @author Nitin@Linux
+ *
+ */
+@CacheConfig(cacheNames = { "stockprices" })
+public interface CacheService {
+
+	@Cacheable(key="symbol")
+	public BigDecimal findPriceBySymbol(String symbol);
+	
+	@CacheEvict(key = "symbol")
+	public void removeFromCache(symbol);
+
+	public Stock findStockBySymbol(String symbol);
+
+	public Map<String, Stock> findSourceListBySymbol(String symbol);
+
+	/**
+	 * Method to save the new stock passed as parameter.
+	 * 
+	 * @param stock
+	 */
+	public void saveStock(Stock stock);
+
+}

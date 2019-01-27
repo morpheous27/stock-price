@@ -1,0 +1,8 @@
+package org.nitin.stockprices.repository;
+
+import org.nitin.stockprices.model.Stock;
+import org.springframework.data.repository.CrudRepository;
+
+public interface StockRepository<S> extends CrudRepository<Stock, String> {
+
+}

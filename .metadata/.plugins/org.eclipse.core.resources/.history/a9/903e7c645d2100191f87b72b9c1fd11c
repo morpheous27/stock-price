@@ -1,0 +1,27 @@
+package org.nitin.stockprices.config;
+
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * Config file to manage and configure cache manager settings.
+ * 
+ * @author Nitin@Linux
+ *
+ */
+@Configuration
+@EnableCaching
+public class CacheConfig {
+
+	/**
+	 * Registers a cache manager with spring with name "stockpricecache";
+	 * @return
+	 */
+	@Bean
+	public CacheManager cacheManager() {
+		return new ConcurrentMapCacheManager("stockpricecache");
+	}
+}

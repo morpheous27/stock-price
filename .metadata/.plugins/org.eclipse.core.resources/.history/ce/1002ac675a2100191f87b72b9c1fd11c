@@ -1,0 +1,37 @@
+package org.nitin.stockprices.model;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+public class Stock implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String source;
+	private String symbol;
+	private BigDecimal price;
+	
+	public String getSource() {
+		return source;
+	}
+	public void setSource(String source) {
+		this.source = source;
+	}
+	public String getSymbol() {
+		return symbol;
+	}
+	public void setSymbol(String symbol) {
+		this.symbol = symbol;
+	}
+	public BigDecimal getPrice() {
+		return price;
+	}
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+	
+	
+
+}

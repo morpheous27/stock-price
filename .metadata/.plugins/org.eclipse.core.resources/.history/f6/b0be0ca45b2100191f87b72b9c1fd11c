@@ -1,0 +1,10 @@
+package org.nitin.stockprices.service;
+
+import org.nitin.stockprices.model.Stock;
+
+public interface StockService {
+	
+	public Stock getPrice(String symbol)();
+	
+
+}

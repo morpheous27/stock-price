@@ -1,0 +1,19 @@
+package org.nitin.stockprices.service;
+
+import org.nitin.stockprices.model.Stock;
+
+public class StockServiceImpl implements StockService {
+
+	@Override
+	public Stock getPrice(String symbol) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void consumePrice(Stock stock) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

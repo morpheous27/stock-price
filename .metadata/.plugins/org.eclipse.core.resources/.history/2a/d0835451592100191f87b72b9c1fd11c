@@ -1,0 +1,16 @@
+package org.nitin.stockprices.controller;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class StockPriceRequestHandler {
+
+	@GetMapping(value="/stock-price/{symbol}")
+	public ResponseEntity<Void> getPrice(@PathVariable String symbol) {
+		return null;
+
+	}
+}

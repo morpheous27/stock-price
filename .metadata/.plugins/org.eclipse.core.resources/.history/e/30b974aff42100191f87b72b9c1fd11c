@@ -1,0 +1,48 @@
+package org.nitin.stockprices.service;
+
+import static org.nitin.stockprices.util.Constants.CHANGE_PERCENT;
+
+import java.math.BigDecimal;
+import java.util.Map;
+
+import org.nitin.stockprices.model.Stock;
+import org.nitin.stockprices.repository.CacheService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class StockServiceImpl implements StockService {
+
+	@Autowired
+	private CacheService stockRepository;
+
+	@Autowired
+	private Map<String, String> symbols;
+
+	@Override
+	public BigDecimal getPrice(String symbol) {
+
+		return stockRepository.findPriceBySymbol(symbol);
+	}
+
+	@Override
+	public void consumePrice(Stock inputStock) {
+
+		String inputSymbol = inputStock.getSymbol();
+		String inputSource = inputStock.getSource();
+		BigDecimal inputPrice = inputStock.getPrice();
+
+		synchronized (symbols.get(inputSymbol)) {
+
+			Stock cachedStock = stockRepository.findPriceBySymbol(inputSymbol);
+			BigDecimal cachedStockPrice = cachedStock.getPrice();
+			BigDecimal priceDiff = inputPrice.subtract(cachedStockPrice);
+			BigDecimal percentChange = priceDiff.divide(cachedStockPrice).multiply(BigDecimal.valueOf(100)).abs();
+			int change = CHANGE_PERCENT.compareTo(percentChange);
+
+			if (change == 0 || change == -1) {
+				stockRepository.saveStock(inputStock);
+			}
+		}
+	}
+}

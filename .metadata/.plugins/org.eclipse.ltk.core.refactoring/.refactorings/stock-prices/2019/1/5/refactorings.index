@@ -1,0 +1,4 @@
+1548566502607	Rename method 'findBySymbol'
+1548570552575	Rename field 'stockRepository'
+1548572085397	Rename method 'saveSourceMapBySymbol'
+1548576283866	Move compilation units

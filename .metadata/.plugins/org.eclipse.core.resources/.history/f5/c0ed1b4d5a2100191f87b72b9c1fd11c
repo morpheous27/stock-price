@@ -1,0 +1,11 @@
+package org.nitin.stockprices.model;
+
+import java.io.Serializable;
+
+public class Stock implements Serializable{
+
+	private String source;
+	private String symbol;
+	private BigDecimal price;
+	
+}

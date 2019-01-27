@@ -1,0 +1,8 @@
+package org.nitin.stockprices.service;
+
+public interface StockService {
+	
+	public Stock getPrice(String symbol)();
+	
+
+}

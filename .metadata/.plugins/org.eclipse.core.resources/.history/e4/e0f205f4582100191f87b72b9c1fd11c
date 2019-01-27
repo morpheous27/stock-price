@@ -1,0 +1,14 @@
+package org.nitin.stockprices.controller;
+
+import org.springframework.boot.actuate.endpoint.web.annotation.RestControllerEndpoint;
+import org.springframework.stereotype.Controller;
+
+
+public class StockPriceRequestHandler {
+
+	@
+	public ResponseEntity<Void> getPrice(String symbol)
+	{
+		
+	}
+}

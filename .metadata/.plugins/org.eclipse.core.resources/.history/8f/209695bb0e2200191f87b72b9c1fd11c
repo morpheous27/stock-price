@@ -1,0 +1,74 @@
+package org.nitin.stockprices.controller;
+
+import java.math.BigDecimal;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.nitin.stockprices.model.Stock;
+import org.nitin.stockprices.service.StockService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * Request handler for stocks operations like adding a new stock and getting the
+ * stock details.
+ * 
+ * @author Nitin@Linux
+ *
+ */
+@RestController
+public class StockPriceRequestHandler {
+
+	private static final Logger LOGGER = LogManager.getLogger(StockPriceRequestHandler.class);
+
+	@Autowired
+	private StockService stockService;
+
+	@GetMapping(value = "/stock-price/{symbol}")
+	public ResponseEntity<BigDecimal> getPrice(@PathVariable String symbol) {
+
+		LOGGER.info("Executing getPrice for symbol - {}", symbol);
+
+		ResponseEntity<BigDecimal> response;
+
+		try {
+			BigDecimal price = stockService.getPrice(symbol);
+			if (null == price) {
+				response = new ResponseEntity<BigDecimal>(price, HttpStatus.NOT_FOUND);
+				return response;
+			}
+
+			response = new ResponseEntity<BigDecimal>(price, HttpStatus.OK);
+			LOGGER.info("Executed getPrice for symbol - {} with price - {}", symbol, price);
+			return response;
+		} catch (Exception e) {
+
+			LOGGER.error("Executed getPrice with exception {}", e);
+			response = new ResponseEntity<BigDecimal>(BigDecimal.valueOf(-1), HttpStatus.INTERNAL_SERVER_ERROR);
+			return response;
+		}
+	}
+
+	@PostMapping(value = "stock-price")
+	public ResponseEntity<Void> consumePrice(@RequestBody Stock stock) {
+
+		LOGGER.info("Executing consumePrice for input stock- {}", stock);
+		ResponseEntity<Void> response;
+		try {
+			stockService.consumePrice(stock);
+			response = new ResponseEntity<Void>(HttpStatus.OK);
+			LOGGER.info("Executed consumePrice for input stock- {} successfully.", stock);
+			return response;
+		} catch (Exception e) {
+			LOGGER.error("Executed consumePrice with exception {}", e);
+			response = new ResponseEntity<Void>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return response;
+		}
+	}
+}

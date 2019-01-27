@@ -1,0 +1,31 @@
+package org.nitin.stockprices.service;
+
+import org.nitin.stockprices.model.Stock;
+import org.nitin.stockprices.repository.StockRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class StockServiceImpl implements StockService {
+
+	@Autowired
+	private StockRepository stockRepository;
+	
+	@Override
+	public Stock getPrice(String symbol) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void consumePrice(Stock stock) {
+		
+		String symbol = stock.getSymbol();
+		stockRepository.findBySymbol(symbol);
+		synchronized (stock) {
+			
+		}
+
+	}
+
+}

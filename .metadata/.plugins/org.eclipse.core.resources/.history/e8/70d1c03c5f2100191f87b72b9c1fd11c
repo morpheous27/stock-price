@@ -1,0 +1,7 @@
+package org.nitin.stockprices.repository;
+
+public interface StockRepository {
+
+	public Stock findBySymbol(String symbol);
+
+}

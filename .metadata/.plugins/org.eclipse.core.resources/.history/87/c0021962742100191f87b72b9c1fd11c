@@ -1,0 +1,44 @@
+package org.nitin.stockprices.service;
+
+import java.math.BigDecimal;
+import java.util.Map;
+
+import org.nitin.stockprices.model.Stock;
+import org.nitin.stockprices.repository.StockRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.NumberUtils;
+
+@Service
+public class StockServiceImpl implements StockService {
+
+	@Autowired
+	private StockRepository stockRepository;
+	
+	@Autowired
+	private Map<String,String> symbols;
+	
+	@Override
+	public Stock getPrice(String symbol) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void consumePrice(Stock inputStock) {
+		
+		String inputSymbol = inputStock.getSymbol();
+		BigDecimal inputPrice = inputStock.getPrice();
+		
+		synchronized (symbols.get(inputSymbol)) {
+			
+			Stock cachedStock = stockRepository.findBySymbol(inputSymbol);
+			BigDecimal cachedStockPrice = cachedStock.getPrice();
+			BigDecimal priceDiff = inputPrice.subtract(cachedStockPrice);
+			priceDiff.divide(cachedStockPrice).multiply(BigDecimal.valueOf(100));
+			
+		}
+
+	}
+
+}

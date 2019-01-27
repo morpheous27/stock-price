@@ -1,0 +1,5 @@
+package org.nitin.stockprices.service;
+
+public class StockServiceImpl {
+
+}

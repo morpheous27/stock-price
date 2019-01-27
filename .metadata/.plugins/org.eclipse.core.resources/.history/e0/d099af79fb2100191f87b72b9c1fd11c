@@ -1,0 +1,35 @@
+package org.nitin.stockprices.repository;
+
+import java.math.BigDecimal;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+import javax.persistence.Cacheable;
+
+import org.nitin.stockprices.model.Stock;
+import org.springframework.stereotype.Repository;
+
+/**
+ * Repository implementation to {@link CacheService}
+ * 
+ * @author Nitin@Linux
+ * 
+ */
+@Repository
+@CacheConfig(cacheNames={"users"})
+public class CacheServiceImpl implements CacheService {
+
+	private Map<String, Map<String, Stock>> cache = new ConcurrentHashMap<String, Map<String, Stock>>();
+
+	@Override
+	@Cacheable
+	public BigDecimal findPriceBySymbol(String symbol) {
+		return cache.get(symbol);
+	}
+
+	@Override
+	public void saveStock(Stock stock) {
+
+	}
+
+}

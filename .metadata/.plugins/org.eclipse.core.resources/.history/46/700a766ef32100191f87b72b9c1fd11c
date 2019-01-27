@@ -1,0 +1,30 @@
+package org.nitin.stockprices.repository;
+
+import java.math.BigDecimal;
+
+import org.nitin.stockprices.model.Stock;
+
+/**
+ * Interface to represent CRUD operations supported on an entity.
+ * 
+ * @author Nitin@Linux
+ *
+ */
+public interface CacheService {
+
+	/**
+	 * Method to get the the stock on the basis of passed symbol.
+	 * 
+	 * @param symbol
+	 * @return
+	 */
+	public BigDecimal findBySymbol(String symbol);
+
+	/**
+	 * Method to save the new stock passed as parameter.
+	 * 
+	 * @param stock
+	 */
+	public void saveStock(Stock stock);
+
+}

@@ -1,0 +1,5 @@
+package org.nitin.stockprices.model;
+
+public class Stock {
+
+}

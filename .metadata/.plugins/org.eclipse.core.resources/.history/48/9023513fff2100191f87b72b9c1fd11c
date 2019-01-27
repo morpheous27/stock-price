@@ -1,0 +1,15 @@
+package org.nitin.stockprices.repository;
+
+import java.util.Map;
+
+import org.nitin.stockprices.model.Stock;
+
+public interface StockPriceRepository {
+	
+	public Stock findStockBySymbol(String symbol);
+
+	public Map<String, Stock> findSourceListBySymbol(String symbol);
+
+	public void saveStock(Stock stock);
+
+}

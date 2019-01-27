@@ -1,0 +1,56 @@
+package org.nitin.stockprices.model;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+/**
+ * Model class to encapsulate stock details.
+ * 
+ * @author Nitin@Linux
+ *
+ */
+public class Stock implements Serializable, Comparable<Stock> {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8435833986804653401L;
+
+	private String source;
+	private String symbol;
+	private BigDecimal price;
+
+	public String getSource() {
+		return source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
+	}
+
+	public String getSymbol() {
+		return symbol;
+	}
+
+	public void setSymbol(String symbol) {
+		this.symbol = symbol;
+	}
+
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+
+	@Override
+	public int compareTo(Stock o) {
+		return this.price.compareTo(o.price);
+	}
+
+	@Override
+	public String toString() {
+		return "Symbol-" + this.symbol + "-Source-" + this.source + "-Price-" + this.price;
+	}
+}
